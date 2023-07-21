@@ -1,6 +1,4 @@
 import subprocess
 
-subprocess.run(['python', 'feature_engineering.py', '-p../data/Train_BigMart.csv ../data/train_final.csv'])
-subprocess.run(['python', 'feature_engineering.py', '-p../data/Test_BigMart.csv ../data/test_final.csv'])
-
-# subprocess.run(['python', 'predict.py'])
+# subprocess.run(['python', 'src/feature_engineering_inference.py', 'data/Test_BigMart.csv' , 'Notebook/data_test_transformed'])
+subprocess.run(['python', 'src/predict.py', 'data/test_final.csv', 'Notebook/data_test_predicted', 'data/model.pkl'])
