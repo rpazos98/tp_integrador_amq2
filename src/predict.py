@@ -22,6 +22,8 @@ from scipy import stats
 import logging
 import joblib
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 class MakePredictionPipeline(object):
     
     def __init__(self, input_path, output_path, model_path: str = None):
@@ -65,6 +67,8 @@ class MakePredictionPipeline(object):
         COMPLETAR DOCSTRING
         """
 
+        logging.info(f"Writing to {self.output_path}")
+
         data["prediction"] = predicted_data
 
         data.to_csv(self.output_path)
@@ -81,7 +85,7 @@ class MakePredictionPipeline(object):
 
 if __name__ == "__main__":
 
-    logging.info("Starting feature engineering")
+    logging.info("Starting predict")
 
     arguments = sys.argv[1:]
 
