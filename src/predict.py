@@ -34,7 +34,10 @@ class MakePredictionPipeline(object):
                 
     def load_data(self) -> pd.DataFrame:
         """
-        COMPLETAR DOCSTRING
+        Load data from the specified input CSV file and return it as a DataFrame.
+        
+        :return: The loaded data as a pandas DataFrame.
+        :rtype: pd.DataFrame
         """
 
         logging.info(f"Reading input data from {self.input_path}")
@@ -45,7 +48,8 @@ class MakePredictionPipeline(object):
 
     def load_model(self) -> None:
         """
-        COMPLETAR DOCSTRING
+        Load a pre-trained machine learning model from the specified path.
+        The loaded model will be stored in the 'model' attribute.
         """    
         self.model = joblib.load(self.model_path)
         
@@ -54,7 +58,13 @@ class MakePredictionPipeline(object):
 
     def make_predictions(self, data: pd.DataFrame) -> pd.DataFrame:
         """
-        COMPLETAR DOCSTRING
+       Make predictions using the loaded machine learning model.
+        
+        :param data: The input data for which predictions will be made.
+        :type data: pd.DataFrame
+        
+        :return: Predicted values based on the input data.
+        :rtype: pd.DataFrame
         """
    
         new_data = self.model.predict(data)
@@ -64,7 +74,12 @@ class MakePredictionPipeline(object):
 
     def write_predictions(self, predicted_data: pd.DataFrame, data: pd.DataFrame) -> None:
         """
-        COMPLETAR DOCSTRING
+       Write the predicted data along with the original input data to an output file.
+        
+        :param predicted_data: The DataFrame containing the predicted values.
+        :type predicted_data: pd.DataFrame
+        :param data: The original input data.
+        :type data: pd.DataFrame
         """
 
         logging.info(f"Writing to {self.output_path}")

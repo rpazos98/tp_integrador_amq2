@@ -110,8 +110,10 @@ class FeatureEngineeringPipeline(object):
 
     def write_prepared_data(self, transformed_dataframe: pd.DataFrame) -> None:
         """
-        COMPLETAR DOCSTRING
+        Write the prepared data (transformed DataFrame) to output files for train and test sets.
         
+        :param transformed_dataframe: The DataFrame containing the prepared data.
+        :type transformed_dataframe: pd.DataFrame
         """
         
         # COMPLETAR CON CÓDIGO

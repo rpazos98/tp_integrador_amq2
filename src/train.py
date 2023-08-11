@@ -45,7 +45,13 @@ class ModelTrainingPipeline(object):
     
     def model_training(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        COMPLETAR DOCSTRING
+        Train a machine learning model using the provided DataFrame and return the trained model.
+        
+        :param df: The DataFrame containing the training data.
+        :type df: pd.DataFrame
+        
+        :return: The trained machine learning model.
+        :rtype: object
         
         """
         
@@ -90,8 +96,11 @@ class ModelTrainingPipeline(object):
 
     def model_dump(self, model_trained, output_path) -> None:
         """
-        COMPLETAR DOCSTRING
+        Save a trained machine learning model to the specified output path.
         
+        :param model_trained: The trained machine learning model.
+        :param output_path: The path where the model will be saved.
+        :type output_path: str 
         """
         
         # COMPLETAR CON CÓDIGO
