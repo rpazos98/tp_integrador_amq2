@@ -29,14 +29,20 @@ def transform(data: pd.DataFrame):
     data.loc[data['Item_Type'] == 'Fruits and Vegetables',
              'Item_Fat_Content'] = 'NA'
 
-    data['Item_Type'] = data['Item_Type'].replace({'Others': 'Non perishable', 'Health and Hygiene': 'Non perishable', 'Household': 'Non perishable',
+    data['Item_Type'] = data['Item_Type'].replace({'Others': 'Non perishable',
+                                                   'Health and Hygiene': 'Non perishable',
+                                                   'Household': 'Non perishable',
                                                    'Seafood': 'Meats', 'Meat': 'Meats',
-                                                   'Baking Goods': 'Processed Foods', 'Frozen Foods': 'Processed Foods', 'Canned': 'Processed Foods', 'Snack Foods': 'Processed Foods',
-                                                   'Breads': 'Starchy Foods', 'Breakfast': 'Starchy Foods',
-                                                   'Soft Drinks': 'Drinks', 'Hard Drinks': 'Drinks', 'Dairy': 'Drinks'})
+                                                   'Baking Goods': 'Processed Foods', 
+                                                   'Frozen Foods': 'Processed Foods', 
+                                                   'Canned': 'Processed Foods', 
+                                                   'Snack Foods': 'Processed Foods',
+                                                   'Breads': 'Starchy Foods', 
+                                                   'Breakfast': 'Starchy Foods',
+                                                   'Soft Drinks': 'Drinks', 
+                                                   'Hard Drinks': 'Drinks', 
+                                                   'Dairy': 'Drinks'})
 
-    # FEATURES ENGINEERING: asignación de nueva categorías para
-    # 'Item_Fat_Content'
     data.loc[data['Item_Type'] == 'Non perishable', 'Item_Fat_Content'] = 'NA'
 
     data['Item_MRP'] = pd.qcut(data['Item_MRP'], 4, labels=[1, 2, 3, 4])
@@ -46,12 +52,10 @@ def transform(data: pd.DataFrame):
     dataframe['Outlet_Size'] = dataframe['Outlet_Size'].replace(
         {'High': 2, 'Medium': 1, 'Small': 0})
     dataframe['Outlet_Location_Type'] = dataframe['Outlet_Location_Type'].replace(
-        {'Tier 1': 2, 'Tier 2': 1, 'Tier 3': 0})  # Estas categorias se ordenaron asumiendo la categoria 2 como más lejos
+        {'Tier 1': 2, 'Tier 2': 1, 'Tier 3': 0}) 
 
     dataframe = pd.get_dummies(dataframe, columns=['Outlet_Type'])
 
-    # Eliminación de variables que no contribuyen a la predicción por ser muy
-    # específicas
     dataset = dataframe.drop(columns=['Item_Identifier', 'Outlet_Identifier'])
 
     return dataset

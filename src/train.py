@@ -10,10 +10,11 @@ FECHA:
 
 # Imports
 
+import sys
+
 import logging
 import pandas as pd
 from joblib import dump
-import sys
 
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
@@ -24,7 +25,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-class ModelTrainingPipeline(object):
+class ModelTrainingPipeline:
 
     def __init__(self, input_path, model_path):
         self.input_path = input_path
@@ -54,8 +55,6 @@ class ModelTrainingPipeline(object):
         :rtype: object
 
         """
-
-        # COMPLETAR CON CÓDIGO
 
         logging.info("Training model")
 

@@ -11,23 +11,17 @@ FECHA:
 # Imports
 
 import sys
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import datetime as dt
-import seaborn as sns
-from sklearn.ensemble import RandomForestClassifier, RandomTreesEmbedding
-from scipy import stats
 import logging
 import joblib
+
+import pandas as pd
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-class MakePredictionPipeline(object):
+class MakePredictionPipeline:
 
     def __init__(self, input_path, output_path, model_path: str = None):
         self.input_path = input_path

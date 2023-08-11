@@ -1,31 +1,16 @@
-"""
-COMPLETAR DOCSTRING
-
-DESCRIPCIÓN:
-AUTOR:
-FECHA:
-"""
-
-# Imports
-
 import sys
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import datetime as dt
-import seaborn as sns
-from sklearn.ensemble import RandomForestClassifier, RandomTreesEmbedding
-from scipy import stats
 import logging
+import pandas as pd
 from feature_engineering_logic import transform
+
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s')
+    format=f'%(asctime)s - %(levelname)s - %(message)s')
 
 
-class FeatureEngineeringPipeline(object):
+class FeatureEngineeringPipeline:
 
     def __init__(self, input_path, output_path):
         self.input_path = input_path
@@ -55,7 +40,7 @@ class FeatureEngineeringPipeline(object):
         :rtype: pd.DataFrame.
         """
 
-        logging.info(f"Applying transformation")
+        logging.info("Applying transformation")
 
         dataset = transform(data)
 
