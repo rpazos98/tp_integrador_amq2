@@ -29,11 +29,9 @@ class FeatureEngineeringPipeline(object):
         self.output_path = output_path
 
     def read_data(self) -> pd.DataFrame:
-        """
-        COMPLETAR DOCSTRING 
-        
-        :return pandas_df: The desired DataLake table as a DataFrame
-        :rtype: pd.DataFrame
+        """    
+        :return pandas_df: The desired DataLake table as a DataFrame. 
+        :rtype: pd.DataFrame.
         """
             
         # COMPLETAR CON CÓDIGO\
@@ -47,8 +45,11 @@ class FeatureEngineeringPipeline(object):
     
     def data_transformation(self, data: pd.DataFrame) -> pd.DataFrame:
         """
-        COMPLETAR DOCSTRING
+        :param data: The input DataFrame to be transformed.
+        :type data: pd.DataFrame.
         
+        :return: The transformed DataFrame.
+        :rtype: pd.DataFrame.
         """
 
         logging.info(f"Applying transformation")
@@ -59,8 +60,10 @@ class FeatureEngineeringPipeline(object):
 
     def write_prepared_data(self, transformed_dataframe: pd.DataFrame) -> None:
         """
-        COMPLETAR DOCSTRING
+        Write the transformed DataFrame to an output file.
         
+        :param transformed_dataframe: The DataFrame containing the prepared data.
+        :type transformed_dataframe: pd.DataFrame
         """
         
         # COMPLETAR CON CÓDIGO
