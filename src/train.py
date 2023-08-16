@@ -42,6 +42,39 @@ class ModelTrainingPipeline(object):
 
         pandas_df = pd.read_csv(input_path)
         return pandas_df
+    
+    def objective(trial):
+        seed = trial.suggest_int('seed', 0, 30)  # Rango de valores para seed
+        model = LinearRegression()
+        
+
+        X = df.drop(columns='Item_Outlet_Sales')
+        x_train, x_val, y_train, y_val = train_test_split(
+            X, df['Item_Outlet_Sales'], test_size=0.3, random_state=seed)
+        # Entrenamiento del modelo
+        model.fit(x_train, y_train)
+
+        # Predicción del modelo ajustado para el conjunto de validación
+        pred = model.predict(x_val)
+
+        # Cálculo de los errores cuadráticos medios y Coeficiente de
+        # Determinación (R^2)
+        mse_val = metrics.mean_squared_error(y_val, pred)
+        return mse_val
+    
+    def optimization():
+        # Crear un estudio de Optuna
+        study = optuna.create_study(direction='minimize')
+
+        # Ejecutar la optimización
+        study.optimize(objective, n_trials=30) 
+
+        # Obtener la mejor semilla encontrada
+        best_seed = study.best_params['seed']
+        print("Mejor semilla encontrada:", best_seed)
+
+        # Utilizar la mejor semilla para entrenar y evaluar el modelo
+        seed = best_seed
 
     def model_training(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -59,13 +92,14 @@ class ModelTrainingPipeline(object):
 
         logging.info("Training model")
 
-        seed = 28
+        #seed = 27
         model = LinearRegression()
 
         # División de dataset de entrenaimento y validación
         X = df.drop(columns='Item_Outlet_Sales')
         x_train, x_val, y_train, y_val = train_test_split(
             X, df['Item_Outlet_Sales'], test_size=0.3, random_state=seed)
+        
 
         # Entrenamiento del modelo
         model.fit(x_train, y_train)
